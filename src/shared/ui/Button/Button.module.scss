@@ -1,0 +1,40 @@
+.Button {
+    cursor: pointer;
+    color: var(--primary-color);
+    background: none;
+}
+
+.clear {
+    padding: 0;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.outline {
+    padding: 10px 15px;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background: none;
+}
+
+.base {
+    border-radius: 8px;
+    padding: 11px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 22px;
+    background: rgb(0 234 249);
+    background: linear-gradient(122.04deg, rgb(0 234 249) -33.24%, rgb(0 189 249) 96.657%);
+    border: none;
+    transition: 0.3s all ease;
+
+    &:hover {
+        box-shadow: 0 4px 4px rgba(0 0 0 / 25%);
+    }
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
