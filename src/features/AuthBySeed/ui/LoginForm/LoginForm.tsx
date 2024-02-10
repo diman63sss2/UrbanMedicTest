@@ -5,8 +5,8 @@ import {
     ChangeEvent, FormEvent, useCallback, useState,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginBySeed } from 'features/AuthBySeed/model/actions/LoginBySeed';
 import { getLoginError, getLoginIsLoading } from 'features/AuthBySeed/model/selectors/authBySeedSelectors';
+import { fetchBySeed } from 'features/AuthBySeed/model/actions/fetchBySeed';
 import cls from './LoginForm.module.scss';
 
 interface LoginFormProps {
@@ -33,7 +33,7 @@ export const LoginForm = ({ className }: LoginFormProps) => {
             setError('*Поле заполнено не корректно');
             return;
         }
-        dispatch(loginBySeed({ seed }, () => {
+        dispatch(fetchBySeed({ seed }, () => {
 
         }));
         setError(null);

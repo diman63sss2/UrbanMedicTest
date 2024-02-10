@@ -2,18 +2,18 @@ import React, { memo, Suspense, useMemo } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { PageLoader } from 'widgets/PageLoader/PageLoader';
 import { useSelector } from 'react-redux';
-import { getIsAuth } from 'features/AuthBySeed/model/selectors/authBySeedSelectors';
+import { getUserAuthData } from 'entities/user/model/selectors/userSelectors';
 import { routeConfig } from '../config/routeConfig';
 
 const AppRouter = () => {
-    const isAuth = useSelector(getIsAuth);
+    const authData = useSelector(getUserAuthData);
 
     const routes = useMemo(() => Object.values(routeConfig).filter((route) => {
-        if (route.auth === isAuth || route.path === '*') {
+        if (route.auth === Boolean(authData.seed) || route.path === '*') {
             return true;
         }
         return false;
-    }), [isAuth]);
+    }), [authData]);
 
     return (
         <Suspense fallback={<PageLoader />}>
