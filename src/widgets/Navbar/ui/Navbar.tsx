@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import useWindowSize from 'shared/lib/hooks/useWindowSize/useWindowSize';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +6,7 @@ import { getSeed } from 'features/AuthBySeed/model/selectors/authBySeedSelectors
 
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { userLogout } from 'entities/user/model/actions/userLogout';
+import { AddUserModal } from 'entities/user/ui/AddUserModal/AddUserModal';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -16,6 +17,15 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     const windowSize = useWindowSize();
     const seed = useSelector(getSeed);
     const dispatch = useDispatch();
+    const [isAddItemModal, setAddItemModal] = useState(false);
+
+    const onCloseModal = useCallback(() => {
+        setAddItemModal(false);
+    }, []);
+
+    const onShowModal = useCallback(() => {
+        setAddItemModal(true);
+    }, []);
 
     const onLogout = useCallback(() => {
         dispatch(userLogout());
@@ -28,13 +38,19 @@ export const Navbar = memo(({ className }: NavbarProps) => {
         >
             <h1 className={cls.logo_seed}>{seed}</h1>
             <div className={cls.buttons}>
-                <Button className={cls.button_add} theme={ThemeButton.BASE}>
+                <Button onClick={onShowModal} className={cls.button_add} theme={ThemeButton.BASE}>
                     Добавить пользователя
                 </Button>
                 <Button onClick={onLogout} className={cls.button_logout} theme={ThemeButton.BASE}>
                     Выйти
                 </Button>
             </div>
+            { isAddItemModal && (
+                <AddUserModal
+                    isOpen={isAddItemModal}
+                    onClose={onCloseModal}
+                />
+            )}
         </header>
     );
 });

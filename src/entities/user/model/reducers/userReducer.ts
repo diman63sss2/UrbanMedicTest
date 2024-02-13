@@ -1,6 +1,7 @@
 import { SEED_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
 import { initialState, UserItem, UserSchema } from '../../model/types/user';
 import {
+    ADD_USER_ITEM,
     FETCH_USER_ITEMS,
     INIT_AUTH_DATA,
     SET_USER,
@@ -16,7 +17,7 @@ const userReducer = (state: UserSchema = initialState, action: UserActionTypes) 
     case SET_USER: {
         console.log(action.payload);
         return {
-            ...state, authData: action.payload.user, UserItems: action.payload.userItems,
+            ...state, authData: action.payload.user, userItems: action.payload.userItems,
         };
     }
 
@@ -47,9 +48,26 @@ const userReducer = (state: UserSchema = initialState, action: UserActionTypes) 
             },
             userItems: [],
             productsCount: 0,
-            UserItemsLoad: false,
+            userItemsLoad: false,
         };
-        /*
+    case ADD_USER_ITEM: {
+        console.log('ADD_USER_ITEM');
+        console.log(action.payload);
+        console.log(
+            [
+                ...state.userItems,
+                { ...action.payload, id: state.userItems[state.userItems.length - 1].id + 1 },
+            ],
+        );
+        return {
+            ...state,
+            userItems: [
+                ...state.userItems,
+                { ...action.payload, id: state.userItems[state.userItems.length - 1].id + 1 },
+            ],
+        };
+    }
+    /*
 
     case UPDATE_USER_ITEMS: {
         const index = state.UserItems.findIndex((item) => item.id === action.payload.id);

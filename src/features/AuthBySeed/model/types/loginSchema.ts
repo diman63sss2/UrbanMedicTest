@@ -1,8 +1,10 @@
+import { UserItem } from 'entities/user/model/types/user';
+
 export interface LoginSchema {
   isAuth: boolean;
   seed: string;
   isLoading: boolean;
-  users: [];
+  users: UserItem[];
   _inited: boolean;
   error?: string;
 }

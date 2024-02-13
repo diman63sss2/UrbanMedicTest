@@ -1,4 +1,5 @@
 import { SEED_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
+import { UserItem } from 'entities/user/model/types/user';
 import { initialStateLogin, LoginSchema } from '../types/loginSchema';
 import {
     AuthBySeedActionTypes, INIT_AUTH_DATA, LOGIN_BY_SEED_FAILURE, LOGIN_BY_SEED_REQUEST, LOGIN_BY_SEED_SUCCESS,
@@ -36,10 +37,20 @@ const authBySeed = (
         };
     }
     case LOGIN_BY_SEED_SUCCESS: {
+        const modifiedUsers = action.payload.map((userItem: UserItem, id) => ({
+            name: {
+                first: userItem.name.first,
+                last: userItem.name.last,
+            },
+            gender: userItem.gender,
+            email: userItem.email,
+            id: id + 1,
+        }));
+        console.log(modifiedUsers);
         return {
             ...state,
             isLoading: false,
-            users: action.payload,
+            users: modifiedUsers,
             isAuth: true,
         };
     }

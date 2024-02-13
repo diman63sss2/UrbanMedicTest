@@ -15,16 +15,16 @@ export const getUserInited = createSelector(
     (_inited) => _inited,
 );
 
-const selectGetUserItems = (state: RootState) => state.userReducer.UserItems;
+const selectGetUserItems = (state: RootState) => state.userReducer.userItems;
 
 export const getUserItems = createSelector(
     selectGetUserItems,
-    (UserItems) => UserItems,
+    (userItems) => userItems,
 );
 
-const selectGetUserItemsLoad = (state: RootState) => state.userReducer.UserItemsLoad;
+const selectGetUserItemsLoad = (state: RootState) => state.userReducer.userItemsLoad;
 
 export const getUserItemsLoad = createSelector(
     selectGetUserItemsLoad,
-    (UserItemsLoad) => UserItemsLoad,
+    (userItemsLoad) => userItemsLoad,
 );

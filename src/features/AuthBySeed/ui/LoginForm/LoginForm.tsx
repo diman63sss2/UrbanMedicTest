@@ -20,8 +20,6 @@ export const LoginForm = ({ className }: LoginFormProps) => {
     const loginError = useSelector(getLoginError);
     const isLoading = useSelector(getLoginIsLoading);
 
-    // const isLoading = useSelector(getLoginIsLoading);
-
     const handleSeedChange = (value: string) => {
         setSeed(value);
     };
@@ -43,8 +41,8 @@ export const LoginForm = ({ className }: LoginFormProps) => {
         <form onSubmit={handleSubmit} className={classNames(cls.LoginForm, {}, [className])}>
             <h1 className={cls.title}>Добро пожаловать</h1>
             <Input
+                error={error}
                 title="Seed"
-                placeholder="Admin"
                 id="login"
                 type="text"
                 value={seed}
@@ -54,6 +52,7 @@ export const LoginForm = ({ className }: LoginFormProps) => {
             <Button disabled={isLoading} type="submit" className={cls.button} theme={ThemeButton.BASE}>
                 Войти
             </Button>
+
         </form>
     );
 };

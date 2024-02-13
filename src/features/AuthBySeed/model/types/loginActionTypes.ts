@@ -1,3 +1,5 @@
+import { UserItem } from 'entities/user/model/types/user';
+
 export const SET_SEED = 'SET_SEED';
 export const LOGIN_BY_SEED_REQUEST = 'LOGIN_BY_SEED_REQUEST';
 export const LOGIN_BY_SEED_SUCCESS = 'LOGIN_BY_SEED_SUCCESS';
@@ -15,7 +17,7 @@ interface LoginBySeedRequestAction {
 
 interface LoginBySeedSuccessAction {
   type: typeof LOGIN_BY_SEED_SUCCESS;
-  payload: [];
+  payload: UserItem[];
 }
 
 interface LoginBySeedFailureAction {

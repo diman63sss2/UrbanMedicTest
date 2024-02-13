@@ -4,7 +4,7 @@ export const SET_USER = 'SET_USER';
 export const INIT_AUTH_DATA = 'INIT_AUTH_DATA';
 export const FETCH_USER_ITEMS = 'FETCH_USER_ITEMS';
 export const USER_LOGOUT = 'USER_LOGOUT';
-export const ADD_USER_ITEM_SUCCESS = 'ADD_USER_ITEM_SUCCESS';
+export const ADD_USER_ITEM = 'ADD_USER_ITEM';
 export const UPDATE_USER_ITEMS = 'UPDATE_USER_ITEMS';
 export const UPDATE_USER_ITEMS_COUNT = 'UPDATE_USER_ITEMS_COUNT';
 
@@ -32,7 +32,8 @@ interface UserLogoutAction {
 }
 
 interface AddUserItemAction {
-  type: typeof ADD_USER_ITEM_SUCCESS;
+  type: typeof ADD_USER_ITEM;
+  payload: UserItem;
 }
 
 interface UpdateUserItemsAction {

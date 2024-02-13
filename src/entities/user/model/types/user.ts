@@ -1,6 +1,13 @@
+export type Gender = 'male' | 'female';
+
 export interface UserItem {
+  name: {
+    first: string,
+    last: string,
+  }
+  gender: Gender,
+  email: string,
   id: number,
-  count: number,
 }
 
 export interface User {
@@ -9,8 +16,8 @@ export interface User {
 
 export interface UserSchema {
   authData: User;
-  UserItems: UserItem[];
-  UserItemsLoad: boolean;
+  userItems: UserItem[];
+  userItemsLoad: boolean;
   productsCount: number;
   _inited: boolean;
 }
@@ -19,8 +26,8 @@ export const initialState: UserSchema = {
     authData: {
         seed: '',
     } as User,
-    UserItemsLoad: false,
-    UserItems: [],
+    userItemsLoad: false,
+    userItems: [],
     productsCount: 0,
     _inited: false,
 };
