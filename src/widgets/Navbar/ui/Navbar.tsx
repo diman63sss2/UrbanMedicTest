@@ -3,7 +3,6 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import useWindowSize from 'shared/lib/hooks/useWindowSize/useWindowSize';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSeed } from 'features/AuthBySeed/model/selectors/authBySeedSelectors';
-
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { userLogout } from 'entities/user/model/actions/userLogout';
 import { AddUserModal } from 'entities/user/ui/AddUserModal/AddUserModal';
@@ -30,7 +29,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     const onLogout = useCallback(() => {
         dispatch(userLogout());
     }, [dispatch]);
-
+    console.log(seed);
     return (
         <header
             data-testid="navbar"
