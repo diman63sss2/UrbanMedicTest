@@ -21,7 +21,6 @@ const MainPage = () => {
             }));
         }
     }, [dispatch, userAuthData, userItemsLoad]);
-    console.log(userItems);
     return (
         <Page>
             <UsersList />

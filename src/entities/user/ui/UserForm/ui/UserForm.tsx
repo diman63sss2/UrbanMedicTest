@@ -11,6 +11,7 @@ import cls from './UserForm.module.scss';
 export enum UserFormType {
   ADD = 'add',
   CHANGE = 'change',
+  DELETE = '',
 }
 
 export type UserFormSuccess = {
@@ -67,15 +68,12 @@ export const UserForm = (props: UserFormProps) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-
         const nameValidation = validateName(name);
         const secondNameValidation = validateName(secondName);
         const emailValidation = validateEmail(email);
 
         if (!nameValidation && !secondNameValidation && !emailValidation) {
             setFormErrors(null);
-            console.log('Данные:', name, secondName, email, selectedGender);
-            window.alert('Форма успешно отправлена!');
             onSuccess(
                 {
                     userItem: {
@@ -85,13 +83,38 @@ export const UserForm = (props: UserFormProps) => {
                         },
                         gender: selectedGender,
                         email,
-                        id: 0,
+                        id: userItem !== undefined ? userItem.id : 0,
                     },
-                    type: UserFormType.ADD,
+                    type: UserFormType.CHANGE,
                 },
             );
         } else {
-            console.log('*Некоторые поля заполнены не корректно');
+            setFormErrors('*Некоторые поля заполнены не корректно');
+        }
+    };
+
+    const deleteSubmit = () => {
+        const nameValidation = validateName(name);
+        const secondNameValidation = validateName(secondName);
+        const emailValidation = validateEmail(email);
+
+        if (!nameValidation && !secondNameValidation && !emailValidation) {
+            setFormErrors(null);
+            onSuccess(
+                {
+                    userItem: {
+                        name: {
+                            first: name,
+                            last: secondName,
+                        },
+                        gender: selectedGender,
+                        email,
+                        id: userItem !== undefined ? userItem.id : 0,
+                    },
+                    type: UserFormType.DELETE,
+                },
+            );
+        } else {
             setFormErrors('*Некоторые поля заполнены не корректно');
         }
     };
@@ -146,7 +169,7 @@ export const UserForm = (props: UserFormProps) => {
                 {
                     type === UserFormType.CHANGE
                   && (
-                      <Button className={cls.button_delete}>
+                      <Button onClick={deleteSubmit} className={cls.button_delete}>
                           <Icon />
                       </Button>
                   )

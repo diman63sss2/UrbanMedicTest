@@ -22,7 +22,7 @@ export const fetchBySeed = (
         type: LOGIN_BY_SEED_REQUEST,
     });
     try {
-        const response = await $api.get(`https://randomuser.me/api/?seed=${authData.seed}&results=25`);
+        const response = await $api.get(`https://randomuser.me/api/?seed=${authData.seed}&results=80`);
         if (!response.data) {
             throw new Error();
         }

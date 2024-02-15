@@ -18,7 +18,7 @@ export interface UserSchema {
   authData: User;
   userItems: UserItem[];
   userItemsLoad: boolean;
-  productsCount: number;
+  userItemsCount: number;
   _inited: boolean;
 }
 
@@ -28,6 +28,6 @@ export const initialState: UserSchema = {
     } as User,
     userItemsLoad: false,
     userItems: [],
-    productsCount: 0,
+    userItemsCount: 0,
     _inited: false,
 };

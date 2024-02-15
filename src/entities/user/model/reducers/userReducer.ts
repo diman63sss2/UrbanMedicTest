@@ -1,7 +1,7 @@
 import { SEED_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
 import { initialState, UserItem, UserSchema } from '../../model/types/user';
 import {
-    ADD_USER_ITEM,
+    ADD_USER_ITEM, CHANGE_USER_ITEM, DELETE_USER_ITEM,
     FETCH_USER_ITEMS,
     INIT_AUTH_DATA,
     SET_USER,
@@ -15,9 +15,11 @@ import {
 const userReducer = (state: UserSchema = initialState, action: UserActionTypes) => {
     switch (action.type) {
     case SET_USER: {
-        console.log(action.payload);
         return {
-            ...state, authData: action.payload.user, userItems: action.payload.userItems,
+            ...state,
+            authData: action.payload.user,
+            userItems: action.payload.userItems,
+            userItemsCount: action.payload.userItems.length,
         };
     }
 
@@ -32,13 +34,6 @@ const userReducer = (state: UserSchema = initialState, action: UserActionTypes) 
             ...state, _inited: true,
         };
     }
-    case FETCH_USER_ITEMS: {
-        return {
-            ...state,
-            products: action.payload,
-        };
-    }
-
     case USER_LOGOUT:
         localStorage.removeItem(SEED_LOCALSTORAGE_KEY);
         return {
@@ -47,24 +42,35 @@ const userReducer = (state: UserSchema = initialState, action: UserActionTypes) 
                 seed: '',
             },
             userItems: [],
-            productsCount: 0,
             userItemsLoad: false,
         };
     case ADD_USER_ITEM: {
-        console.log('ADD_USER_ITEM');
-        console.log(action.payload);
-        console.log(
-            [
-                ...state.userItems,
-                { ...action.payload, id: state.userItems[state.userItems.length - 1].id + 1 },
-            ],
+        const newItems = [
+            ...state.userItems,
+            { ...action.payload, id: state.userItems[state.userItems.length - 1].id + 1 },
+        ];
+
+        return {
+            ...state,
+            userItems: newItems,
+            productsCount: newItems.length,
+        };
+    }
+    case CHANGE_USER_ITEM: {
+        const newArray = state.userItems.map(
+            (item: UserItem) => (item.id === action.payload.id ? action.payload : item),
         );
         return {
             ...state,
-            userItems: [
-                ...state.userItems,
-                { ...action.payload, id: state.userItems[state.userItems.length - 1].id + 1 },
-            ],
+            userItems: newArray,
+        };
+    }
+    case DELETE_USER_ITEM: {
+        const newItems = state.userItems.filter((item:UserItem) => item.id !== action.payload.id);
+        return {
+            ...state,
+            userItems: newItems,
+            userItemsCount: newItems.length,
         };
     }
     /*
@@ -88,12 +94,7 @@ const userReducer = (state: UserSchema = initialState, action: UserActionTypes) 
             products: [...state.UserItems, action.payload],
         };
     }
-    case UPDATE_USER_ITEMS_COUNT: {
-        return {
-            ...state,
-            productsCount: state.UserItems.reduce((total, item) => total + item.count, 0),
-        };
-    } */
+     */
 
     default:
         return { ...state };

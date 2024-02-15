@@ -28,3 +28,10 @@ export const getUserItemsLoad = createSelector(
     selectGetUserItemsLoad,
     (userItemsLoad) => userItemsLoad,
 );
+
+const selectGetUserItemsCount = (state: RootState) => state.userReducer.userItemsCount;
+
+export const getUserItemsCount = createSelector(
+    selectGetUserItemsCount,
+    (userItemsCount) => userItemsCount,
+);

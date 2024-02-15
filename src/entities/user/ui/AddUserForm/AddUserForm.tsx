@@ -6,13 +6,15 @@ import cls from './AddUserForm.module.scss';
 
 interface AddUserFormProps {
   className?: string;
+  onClose: () => void;
 }
 
-export const AddUserForm = ({ className }: AddUserFormProps) => {
+export const AddUserForm = ({ className, onClose }: AddUserFormProps) => {
     const dispatch = useDispatch();
 
     const onSuccess = (result: UserFormSuccess) => {
         dispatch(addUserItem(result.userItem));
+        onClose();
     };
     return (
         <div className={classNames(cls.AddUserForm, {}, [className])}>

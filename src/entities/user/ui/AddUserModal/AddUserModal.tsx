@@ -14,6 +14,6 @@ export const AddUserModal = ({ isOpen, onClose }: LoginModalProps) => (
         onClose={onClose}
         lazy
     >
-        <AddUserForm />
+        <AddUserForm onClose={onClose} />
     </Modal>
 );

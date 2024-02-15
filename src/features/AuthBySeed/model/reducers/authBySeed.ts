@@ -14,7 +14,6 @@ const authBySeed = (
     switch (action.type) {
     case INIT_AUTH_DATA: {
         const seed = localStorage.getItem(SEED_LOCALSTORAGE_KEY);
-        console.log(seed);
         if (seed) {
             return {
                 ...state, _inited: true, seed, isAuth: true,
@@ -46,7 +45,6 @@ const authBySeed = (
             email: userItem.email,
             id: id + 1,
         }));
-        console.log(modifiedUsers);
         return {
             ...state,
             isLoading: false,

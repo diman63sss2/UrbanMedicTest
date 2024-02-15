@@ -1,5 +1,24 @@
-.usersList {
+.UserList {
     width: 748px;
+    max-height: 616px;
+}
+
+.scrollList {
+    max-height: 652px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 5px; /* Ширина скроллбара */
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 100px;
+        background: linear-gradient(135.3deg, rgb(0 165 238) 2.156%, rgb(20 215 209) 96.66%);
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #f2f2f7; /* Цвет трека скроллбара */
+    }
 }
 
 .row {
@@ -8,7 +27,7 @@
     border-bottom: 1px solid #f2f2f7;
 }
 
-.row:nth-child(1) {
+.row.head {
     height: 40px;
     background: #f2f2f7;
 }
@@ -52,7 +71,7 @@
 }
 
 .cell:nth-child(6) {
-    width: 128px;
+    width: 122px;
 }
 
 .button {

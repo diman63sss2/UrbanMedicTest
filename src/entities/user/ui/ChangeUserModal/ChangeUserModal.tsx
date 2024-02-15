@@ -14,6 +14,6 @@ export const ChangeUserModal = ({ isOpen, onClose, userItem }: ChangeUserModalPr
         onClose={onClose}
         lazy
     >
-        <ChangeUserForm userItem={userItem} />
+        <ChangeUserForm onClose={onClose} userItem={userItem} />
     </Modal>
 );

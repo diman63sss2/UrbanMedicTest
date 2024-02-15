@@ -5,6 +5,8 @@ export const INIT_AUTH_DATA = 'INIT_AUTH_DATA';
 export const FETCH_USER_ITEMS = 'FETCH_USER_ITEMS';
 export const USER_LOGOUT = 'USER_LOGOUT';
 export const ADD_USER_ITEM = 'ADD_USER_ITEM';
+export const CHANGE_USER_ITEM = 'CHANGE_USER_ITEM';
+export const DELETE_USER_ITEM = 'DELETE_USER_ITEM';
 export const UPDATE_USER_ITEMS = 'UPDATE_USER_ITEMS';
 export const UPDATE_USER_ITEMS_COUNT = 'UPDATE_USER_ITEMS_COUNT';
 
@@ -36,6 +38,16 @@ interface AddUserItemAction {
   payload: UserItem;
 }
 
+interface ChangeUserItemAction {
+  type: typeof CHANGE_USER_ITEM;
+  payload: UserItem;
+}
+
+interface DeleteUserItemAction {
+  type: typeof DELETE_USER_ITEM;
+  payload: UserItem;
+}
+
 interface UpdateUserItemsAction {
   type: typeof UPDATE_USER_ITEMS;
   payload: UserItem;
@@ -52,4 +64,6 @@ export type UserActionTypes =
   | UserLogoutAction
   | AddUserItemAction
   | UpdateUserItemsAction
-  | UpdateUserItemsCountAction;
+  | UpdateUserItemsCountAction
+  | ChangeUserItemAction
+  | DeleteUserItemAction;
