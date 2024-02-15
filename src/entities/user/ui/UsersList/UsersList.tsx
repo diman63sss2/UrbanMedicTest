@@ -6,6 +6,7 @@ import { useCallback, useState } from 'react';
 import { ChangeUserModal } from 'entities/user/ui/ChangeUserModal/ChangeUserModal';
 import { UserItem } from 'entities/user/model/types/user';
 import useInfiniteScroll from 'entities/user/utils/useInfiniteScroll';
+import { UserListItem } from 'entities/user/ui/UserListItem/UserListItem';
 import cls from './UsersList.module.scss';
 
 interface UsersListProps {
@@ -66,28 +67,7 @@ export const UsersList = ({ className }: UsersListProps) => {
             </div>
             <div ref={listRef} className={cls.scrollList}>
                 {usersItems.slice(0, visibleItems).map((item, id) => (
-                    <div key={id} className={cls.row}>
-                        <div className={cls.cell}>
-                            {id + 1}
-                        </div>
-                        <div className={cls.cell}>
-                            {item.name.last}
-                        </div>
-                        <div className={cls.cell}>
-                            {item.name.first}
-                        </div>
-                        <div className={cls.cell}>
-                            {item.gender}
-                        </div>
-                        <div className={cls.cell}>
-                            {item.email}
-                        </div>
-                        <div className={cls.cell}>
-                            <Button onClick={() => onShowModal(item)} className={cls.button} theme={ThemeButton.BASE}>
-                                Действия
-                            </Button>
-                        </div>
-                    </div>
+                    <UserListItem id={id} key={id} className={cls.row} item={item} onShowModal={onShowModal} />
                 ))}
             </div>
 

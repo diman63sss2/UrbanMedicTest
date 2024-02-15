@@ -29,7 +29,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     const onLogout = useCallback(() => {
         dispatch(userLogout());
     }, [dispatch]);
-    console.log(seed);
     return (
         <header
             data-testid="navbar"
@@ -41,7 +40,9 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                     Добавить пользователя
                 </Button>
                 <Button onClick={onLogout} className={cls.button_logout} theme={ThemeButton.BASE}>
-                    Выйти
+                    <div className={cls.button_logout_text}>
+                        Выйти
+                    </div>
                 </Button>
             </div>
             { isAddItemModal && (

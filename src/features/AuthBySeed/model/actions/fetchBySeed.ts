@@ -35,6 +35,7 @@ export const fetchBySeed = (
             payload: data.results,
         });
         dispatch(setUser(authData, data.results));
+        dispatch(setSeed(authData.seed));
         onSuccess();
     } catch (error) {
         dispatch({

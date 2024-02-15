@@ -17,6 +17,36 @@
 .button_logout {
     background: rgb(242 242 247);
     color: #000;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        background: linear-gradient(-45deg, rgb(69 203 199) 0%, rgb(0 159 229) 100%), rgb(242 242 247 / 0%);
+        transition: 0.3s all ease;
+        z-index: 1;
+    }
+
+    &:hover {
+        box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+
+        &::after {
+            opacity: 1;
+        }
+    }
+}
+
+.button_logout_text {
+    position: relative;
+    z-index: 2;
 }
 
 .logo_seed {
